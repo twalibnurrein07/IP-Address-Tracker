@@ -1,0 +1,13 @@
+body {
+  font-family: "Rubik", sans-serif;
+  text-align: center;
+  font-size: 18px;
+  background-image: url(./images/pattern-bg.png);
+}
+.content {
+  text-align: center;
+  padding: 30px;
+}
+h1 {
+  color: white;
+}

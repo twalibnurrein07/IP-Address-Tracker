@@ -4,9 +4,14 @@ body {
   font-size: 18px;
   background-image: url(./images/pattern-bg.png);
 }
+.container-fluid{
+  padding: 0px !important;
+}
 .content {
   text-align: center;
-  padding: 30px;
+  padding: 20px 250px;
+  
+  height: 250px;
 }
 h1 {
   color: white;

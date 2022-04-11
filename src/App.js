@@ -3,10 +3,17 @@ import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useState } from 'react';
 import axios from "axios";
-import MapImg from "./components/MapImg";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+
 
 function App() {
+  const[IPdetails,setIPdetails]=useState([]);
   const[IP,setIP]=useState("");
+  const [lat, setLat] = useState(36.78175);
+  const [lon, setLon] = useState(-1.27490);
+  const [geo,setGeo]=useState({longitude:"-1.27490",latitude:"36.78175"})
+  
 
   function handleChange(event){
     setIP(event.target.value);
@@ -19,8 +26,10 @@ function App() {
       }
     })
     .then(function (response) {
-      
-      console.log(response.data.country_name);
+      setIPdetails(response.data)
+      setLat(response.data.latitude);
+      setLon(response.data.longitude);
+      console.log(response.data);
     })
     .catch(function (error) {
       console.log(error);
@@ -30,17 +39,27 @@ function App() {
     }); 
   }
   return (
-    <div className='container'>
+    <div className='container-fluid'>
     <div className="content">
     <h1>IP Address Tracker</h1>
     <div className="input-group mb-3">
-  <input type="text" class="form-control" name="IP" value={IP} placeholder="Search for any IP address or domain"  onChange={handleChange}/>
+  <input type="text" className="form-control" name="IP" value={IP} placeholder="Search for any IP address or domain"  onChange={handleChange}/>
   <button className="btn btn-outline-secondary" onClick={handleClick} id="button-addon2">Button</button>
 </div>
     </div>
-    <div className="maps">
-      <MapImg/>
-    </div>
+    <MapContainer style={{ height: "450px", width: "100%" }} center={{lon,lat}} zoom={13}>
+  <TileLayer
+    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+  />
+  <Marker position={[51.505, -0.09]}>
+    <Popup>
+      A pretty CSS3 popup. <br /> Easily customizable.
+    </Popup>
+  </Marker>
+</MapContainer>
+    
+    
     </div>
     
       

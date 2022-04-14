@@ -16,3 +16,22 @@ body {
 h1 {
   color: white;
 }
+h3{
+  color: black;
+  padding-top: 10px;
+}
+.row{
+  background-color: white;
+  position: relative;
+  top: 50px;
+  z-index: 2;
+}
+.col-lg-3{
+  border-right-color: black;
+  border-right-style: ridge;
+  border-width: 5px;
+}
+.leaflet-container{
+  position: relative;
+  z-index: 1;
+}
